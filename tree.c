@@ -93,6 +93,32 @@ struct tree *tree_insert(int value, tree_t *tree){
   return tree;
   }
 
+int main()
+{
+  tree_t *oak = tree_new();
+  oak->key_value = 2;
+  
+   
+
+  while(true)
+    {
+      int testvalue = 0;
+      scanf("%d", &testvalue);    
+      tree_insert(testvalue, oak);
+     
+      int tree_depthresult = tree_depth(oak);
+      int tree_sizeresult = tree_size(oak);
+      printf("tree depthresult; %d \n tree sizeresult; %d\n", tree_depthresult, tree_sizeresult);
+    }
+  
+  return 0;
+  
+}
+
+
+
+
+
 /// This does not need implementation until Assignment 2
 bool tree_remove(tree_t *tree)
 {
