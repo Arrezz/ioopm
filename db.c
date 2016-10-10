@@ -44,7 +44,7 @@ bool is_shelf(shelf_t *shelf)
   return true;
 }
   
-shelf_t ask_question_shelf(char *question)
+shelf_t *ask_question_shelf(char *question)
 {
   return ask_question(question, is_shelf ,(convert_func) strdup).s;
 }
