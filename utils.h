@@ -10,13 +10,7 @@
 #include "tree.h"
 extern char *strdup(const char *);
 
-struct shelf
-{
- char * shelfname;
- int amount;
-};
-
-typedef struct shelf shelf_t;
+typedef struct list shelf_t;
 
 struct item
 {
@@ -32,7 +26,7 @@ typedef union {
   int   i;
   float f;
   char *s;
-  shelf_t shelf;
+  shelf_t *shelf;
 } answer_t;
 
 typedef bool(*check_func)(char *);
