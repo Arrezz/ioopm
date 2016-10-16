@@ -6,18 +6,30 @@
 
 #ifndef __list_h__
 #define __list_h__
-
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 /// Define struct list in your .c file not here! (why?)
 typedef struct list list_t;
+
+typedef struct link link_t;
 
 /// \file list.h
 
 /// Creates a new list
 ///
 /// \returns: empty list
+
 list_t *list_new();
+
+/// \file link.h
+///
+/// Creates a new link
+
+link_t *link_new();
 
 /// Inserts a new element at the end of the list
 ///
@@ -30,6 +42,9 @@ void list_append(list_t *list, int elem);
 /// \param list pointer to the list
 /// \param elem the integer to be prepended
 void list_prepend(list_t *list, int elem);
+
+
+char *list_getshelfname(list_t *list, int index);
 
 /// Inserts a new element at a given index. 
 ///

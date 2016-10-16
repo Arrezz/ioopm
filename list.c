@@ -2,9 +2,11 @@
 /// !! Detta är en lista som endast hanterar heltal. Men det 
 /// !! kommer inte att räcka för oss här eftersom vi skall ha
 /// !! andra data (vilka??) i vår (enda) lista.
-#include <stdlib.h>
-#include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <ctype.h>
 /// Define struct list in your .c file not here! (why?)
 typedef struct list list_t;
 
@@ -13,6 +15,7 @@ typedef struct link link_t;
 struct link
 {
   int value;
+  char *shelf;
   link_t *next;
 };
 
@@ -47,11 +50,31 @@ link_t *link_new()
   link_t *createdlink = malloc(sizeof(link_t));
 
   createdlink->value = NULL;
-  createdlink->next = NULL;  
+  createdlink->next = NULL;
+  createdlink->shelf = NULL;
 
+  
   return createdlink;
   
 }
+
+
+char *list_getshelfname(list_t *list, int index)
+{
+  int i = 0;
+  char *str = " ";
+  struct link *travlist;
+
+  travlist = list->first;
+  
+  for(;(i < index && travlist->next != 0); i++)
+    {
+      travlist = travlist->next;
+    }
+  str = travlist->shelf; 
+  return str;	
+}
+
 
 /// Inserts a new element at the end of the list
 ///

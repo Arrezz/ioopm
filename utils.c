@@ -1,4 +1,9 @@
 #include "utils.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 bool not_empty(char *str)
 {

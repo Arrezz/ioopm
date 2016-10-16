@@ -12,6 +12,7 @@
 /// Define struct list in your .c file not here! (why?)
 typedef struct list list_t;
 
+typedef struct link link_t;
 /// \file list.h
 
 /// Creates a new list
@@ -19,6 +20,8 @@ typedef struct list list_t;
 /// \returns: empty list
 list_t *list_new();
 
+
+link_t *link_new();
 /// Inserts a new element at the end of the list
 ///
 /// \param list pointer to the list

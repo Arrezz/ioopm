@@ -25,7 +25,7 @@ int tree_depth(tree_t *tree);
 
 /// Insert a node into the tree.
 
-void tree_insert(int value, tree_t **tree);
+struct tree *tree_insert(int value, tree_t **tree);
 
 /// This does not need implementation until Assignment 2
 bool tree_remove(tree_t *tree);

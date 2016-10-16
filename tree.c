@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "utils.h"
 /// Define struct tree in your .c file not here! (why?)
 struct tree
 {

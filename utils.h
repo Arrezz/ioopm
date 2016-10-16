@@ -10,24 +10,37 @@
 #include "tree.h"
 extern char *strdup(const char *);
 
-typedef struct list shelf_t;
-
 struct item
 {
   char *name;
   char *description;
   int price;
-  shelf_t *shelf; //En bokstav foljd av en eller flera siffror maste ha check.
+  list_t *shelf_list; //En bokstav foljd av en eller flera siffror maste ha check.
 };
 
-typedef struct item item_t;
+struct list
+{
+  link_t *first;
+  link_t *last; 
+};
+
+struct link
+{
+  int value;
+  char *shelfname;
+  link_t *next;
+};
 
 typedef union {
   int   i;
   float f;
   char *s;
-  shelf_t *shelf;
+  list_t *shelf;
 } answer_t;
+
+typedef struct list list_t;
+
+typedef struct item item_t;
 
 typedef bool(*check_func)(char *);
 
