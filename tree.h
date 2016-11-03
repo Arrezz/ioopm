@@ -2,7 +2,7 @@
 #define __tree_h__
 
 #include <stdbool.h>
-
+#include "utils.h"
 /// Define struct tree in your .c file not here! (why?)
 typedef struct tree tree_t;
 
@@ -25,7 +25,7 @@ int tree_depth(tree_t *tree);
 
 /// Insert a node into the tree.
 
-struct tree *tree_insert(int value, tree_t **tree);
+struct tree *tree_insert (tree_t *tree, item_t *item);
 
 /// This does not need implementation until Assignment 2
 bool tree_remove(tree_t *tree);

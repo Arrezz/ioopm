@@ -111,4 +111,6 @@ int *list_last(list_t *list);
 /// \returns the length of list
 int list_length(list_t *list);
 
+int list_sum(list_t *list);
+
 #endif

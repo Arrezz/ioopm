@@ -2,22 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "list.h"
 /// Define struct tree in your .c file not here! (why?)
 struct tree
 {
   struct tree *left;
   struct tree *right;
   int key_value;
+  item_t node_item;
+  ///Vi maste ha funktioner som funkar pa item_t och inte key_value.
 };
 typedef struct tree tree_t;
-
-/// \file tree.h
-///
-/// \author Tobias Wrigstad
-/// \version 1.0
-/// \date 2015-08-28
-/// \bug This file is partial. (On purpose.)
-
 
 /// Creates a new tree
 ///
@@ -69,8 +64,8 @@ int tree_depth(tree_t *tree)
 }
 
 
-struct tree *tree_insert(int value, tree_t *tree){
-  
+struct tree *tree_insert (tree_t *tree, item_t *item){
+  int value = list_sum(tree->node_item.shelf_list);
    if (tree == NULL)
     {
      
@@ -84,11 +79,11 @@ struct tree *tree_insert(int value, tree_t *tree){
   
   if (value <= tree->key_value)
     {
-     tree->left = tree_insert(value,tree->left);
+      tree->left = tree_insert(tree->left, item);
     }
   else if (value >= tree->key_value)
     {
-      tree->right = tree_insert(value, tree->right);
+      tree->right = tree_insert(tree->right, item);
     }
   return tree;
   }

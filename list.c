@@ -307,6 +307,27 @@ int list_length(list_t *list)
       return 0; 
 }
 
+int list_sum(list_t *list)
+{
+  
+  int i = 0;
+  int sum = 0;
+  struct link *travlist;
+  if (list->first != 0)
+    {
+
+      travlist = list->first;
+      for(i = 1; travlist->next != 0; i++)
+	{
+          sum = sum + travlist->value;
+	  travlist = travlist->next;
+	}
+      
+      return sum;
+      
+    }
+  return 0; 
+}
 /// A convenience for list_get(list, 0)
 int *list_first(list_t *list)
 {  
