@@ -125,7 +125,7 @@ tree_t *edit_db(tree_t *db)
 void add_item_to_db(tree_t *db)
 {
   item_t newitem = input_item();
-  db = tree_insert(db);
+  db = tree_insert(db, newitem);
   ///tree_insert fungerar bara for ints, vi behover att den ska fungera for item_t.
   ///check for om item redan finns i databasen.
 }
