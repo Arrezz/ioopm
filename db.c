@@ -97,24 +97,21 @@ void list_db(tree_t *db)
   ///Gor satt tree har item och inte key_value.
 }
 
-
-
 tree_t *edit_db(tree_t *db)
 {
   int db_siz = tree_size(db);
-  list_db(db); //Lists database
+  list_db(db);
   int pos = ask_question_int("\nVilken vara skall editeras?");
-  while (pos > 16 || pos<1)
+  while (pos > db_siz || pos <= 1)
     {
-      pos = ask_question_int("Du måste välja en vara mellan 1-16!\nVilken vara skall editeras?");
+      pos = ask_question_int("Du måste välja en giltig varuplats!\nVilken vara skall editeras?");
     }
-  print_item(db);  //Varför '&'???
   printf("\nVill du ersätta vara %d med en ny vara?", pos);
   char *choice =  ask_question_string("(Y/N)");
   if (*choice == 'Y' || *choice == 'y')
     {
-      db = tree_insert(input_item(),db);
-      puts("\n");
+      tree_noderemoval(db, pos);
+      tree_insert(db, input_item());
       return db;
     }
   puts("\n");
@@ -130,21 +127,25 @@ void add_item_to_db(tree_t *db)
   ///check for om item redan finns i databasen.
 }
 
-void remove_item_from_db(tree_t *db)
+tree_t *remove_item_from_db(tree_t *db)
 {
   int db_siz = tree_size(db);
-  list_db(db, db_siz);
+  list_db(db);
   int pos = ask_question_int("\nVilken vara skall tas bort?");
-  while (pos > 16 || pos<1)
+  while (pos > db_siz || pos <= 1)
     {
-      pos = ask_question_int("Du måste välja en vara mellan 1-16!\nVilken vara skall editeras?");
+      pos = ask_question_int("Du måste välja en giltig varuplats!\nVilken vara skall editeras?");
     }
-  for ( int index = pos; 16 > index ; ++index)
+  printf("\nAr du saker pa att du vill ta bort varan pa position %d?", pos);
+  char *choice =  ask_question_string("(Y/N)");
+  if (*choice == 'Y' || *choice == 'y')
     {
-      db[index-1] = db[index];
+      tree_noderemoval(db, pos);
+      return db;
     }
-  &db_siz = &db_siz-1;
-  ///Maste helt goras om.
+  puts("\n");
+  return db;
+  
 }
 
 tree_t *regret_db(tree_t *db, tree_t *db_prev)
@@ -182,6 +183,11 @@ char ask_question_menu()
     }
 }
 
+ bool assign_position(tree_t *db)
+ {
+   return false;
+ }
+
 void event_loop (tree_t *db, int *db_siz)
 {
   char choice = ask_question_menu();
@@ -199,20 +205,21 @@ void event_loop (tree_t *db, int *db_siz)
           else
             {
               db_prev = db;
-	      add_item_to_db(db, db_siz);
+	      add_item_to_db(db);
 	      choice = ask_question_menu();
             }
         }
       else if (choice == 'T')
         {
           db_prev = db;
-          remove_item_from_db(db, db_siz);
+          remove_item_from_db(db);
           choice = ask_question_menu();
+          assign_position(db);
         }
       else if (choice == 'R')
         {
           db_prev = db;
-          edit_db(db, *db_siz);
+          edit_db(db);
           choice = ask_question_menu();
         }
       else if (choice == 'G')
@@ -222,7 +229,7 @@ void event_loop (tree_t *db, int *db_siz)
         }
       else if (choice == 'H')
         {
-          list_db(&db[0], *db_siz);
+          list_db(db);
           choice = ask_question_menu();
         }
       else if (choice == 'A')
@@ -246,12 +253,8 @@ void event_loop (tree_t *db, int *db_siz)
 //remove_item_from_db - tar bort en vara/nod i trädet
 
 int main(int argc, char *argv[])
-{
-  
+{  
 
   tree_t *tree = tree_new(); 
-
-
-  
 
 }
